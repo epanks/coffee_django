@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>List Balai</h5>
+            </div>
+            <div class="card card-body">
+                <table class="table">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Balai</th>
+                        <th>Wilayah</th>
+                    </tr>
+                    {% for item in databalai %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nmbalai }}</td>
+                        <td>{{ item.wilayah }}</td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
