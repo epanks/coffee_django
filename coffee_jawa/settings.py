@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'progresapp',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pahit',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '1qaz2wsx',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -119,6 +120,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+IMPORT_EXPORT_IMPORT_PERMISSION_CODE = 'delete' 
+IMPORT_EXPORT_EXPORT_PERMISSION_CODE = 'delete'
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 STATIC_URL = '/static/'
 
