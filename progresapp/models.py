@@ -110,11 +110,11 @@ class Tag(models.Model):
         return self.tag
 
 
-class Sumberdana(models.Model):
-    sumberdana = models.CharField(max_length=45, null=True)
+# class Sumberdana(models.Model):
+#     sumberdana = models.CharField(max_length=45, null=True)
 
-    def __str__(self):
-        return self.sumberdana
+#     def __str__(self):
+#         return self.sumberdana
 
 
 class Paket(models.Model):
@@ -125,39 +125,44 @@ class Paket(models.Model):
     #       ('2020', '2020'))
     # FNF = (('F', 'F'), ('NF', 'NF'), ('AP', 'AP'))
     # SYCMYC = (('SYC', 'SYC'), ('MYC', 'MYC'), ('MYC Lanjutan', 'MYC Lanjutan'))
-    # SATOUTPUT = (('Dokumen', 'Dokumen'), ('Titik', 'Titik'), ('Buah', 'Buah'),
-    #              ('Km', 'Km'), ('Ha', 'Ha'), ('Layanan', 'Layanan'))
-    # SATOUTCOME = (('m3/dtk', 'm3/dtk'), ('Dokumen', 'Dokumen'),
-    #               ('Titik', 'Titik'), ('Buah', 'Buah'), ('Km', 'Km'),
-    #               ('Ha', 'Ha'), ('Layanan', 'Layanan'))
+    SATOUTPUT = (('Dokumen', 'Dokumen'), ('Titik', 'Titik'), ('Buah', 'Buah'),
+                 ('Km', 'Km'), ('Ha', 'Ha'), ('Layanan', 'Layanan'))
+    SATOUTCOME = (('m3/dtk', 'm3/dtk'), ('Dokumen', 'Dokumen'),
+                  ('Titik', 'Titik'), ('Buah', 'Buah'), ('Km', 'Km'),
+                  ('Ha', 'Ha'), ('Layanan', 'Layanan'))
 
     balai = models.ForeignKey(Balai, on_delete=models.DO_NOTHING, null=True)
     nmgiat = models.CharField(max_length=4)
     nmpaket = models.CharField(max_length=250)
-    kdoutput = models.ForeignKey(Kodeoutput,
-                                 on_delete=models.DO_NOTHING,
-                                 null=True)
+    kdoutput = models.CharField(max_length=3,null=True)
+    # kdoutput = models.ForeignKey(Kodeoutput,
+    #                              on_delete=models.DO_NOTHING,
+    #                              null=True)
     # kdoutput = models.CharField(max_length=3)
     # kdoutput_link = models.ForeignKey(Kodeoutput,
     #                                   on_delete=models.DO_NOTHING,
     #                                   null=True)
     # kdpaket = models.CharField(max_length=10)
-    pagurmp = models.FloatField(null=True)
-    trgoutput = models.DecimalField(max_digits=10, decimal_places=3)
-    satoutput = models.ForeignKey(Satoutput,
-                                  on_delete=models.DO_NOTHING,
-                                  null=True)
-    trgoutcome = models.DecimalField(max_digits=10, decimal_places=3)
-    satoutcome = models.ForeignKey(Satoutcome,
-                                   on_delete=models.DO_NOTHING,
-                                   null=True)
+    rpm = models.FloatField(null=True)
+    phln = models.FloatField(null=True)
+    sbsn = models.FloatField(null=True)
+    trgoutput = models.DecimalField(max_digits=15, decimal_places=9,null=True)
+    satoutput = models.CharField(max_length=25, null=True, choices=SATOUTPUT)
+    # satoutput = models.ForeignKey(Satoutput,
+    #                               on_delete=models.DO_NOTHING,
+    #                               null=True)
+
+    trgoutcome = models.DecimalField(max_digits=15, decimal_places=9,null=True)
+    satoutcome = models.CharField(max_length=25, null=True, choices=SATOUTCOME)
+    # satoutcome = models.ForeignKey(Satoutcome,
+    #                                on_delete=models.DO_NOTHING,
+    #                                null=True)
     ta = models.ForeignKey(Ta, on_delete=models.DO_NOTHING, null=True)
     ppk = models.ForeignKey(Ppk, on_delete=models.DO_NOTHING, null=True)
     ks = models.ForeignKey(Ks, on_delete=models.DO_NOTHING, null=True)
     fnf = models.ForeignKey(Fnf, on_delete=models.DO_NOTHING, null=True)
     sycmyc = models.ForeignKey(Sycmyc, on_delete=models.DO_NOTHING, null=True)
     tag = models.ManyToManyField(Tag)
-    sumberdana = models.ManyToManyField(Sumberdana)
     # kdoutput = models.ForeignKey(Kodeoutput,related_name='kdoutput_set' on_delete=models.DO_NOTHING, null=True)
     satker = models.ForeignKey(Satker, on_delete=models.DO_NOTHING, null=True)
     # satker = models.CharField(max_length=8)
